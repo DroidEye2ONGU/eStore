@@ -234,6 +234,8 @@
             </div>
             <%
                 }
+                //将本次页面作为参数传给request
+                request.setAttribute("isSettedOrder",true);
             %>
         </div>
         <!-- 送货清单（结束） -->

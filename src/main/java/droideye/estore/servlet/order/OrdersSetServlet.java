@@ -54,10 +54,21 @@ public class OrdersSetServlet extends HttpServlet {
             myOrders.put(order, orderLines);
         }
 
-        //清除购物车
-        Map<Integer, Map<Integer, Integer>> shopcart =
-                (Map<Integer, Map<Integer, Integer>>) session.getAttribute("shopcart");
-        shopcart.remove(userId);
+        //判断发送请求的页面是不是订单提交,如果是,清除购物车
+        if (request.getAttribute("isSettedOrder") != null &&
+                (boolean)request.getAttribute("isSettedOrder")) {
+            //清除购物车
+            Map<Integer, Map<Integer, Integer>> shopcart =
+                    (Map<Integer, Map<Integer, Integer>>) session.getAttribute("shopcart");
+
+
+            //若购物车不为空,则清空购物车
+            if (shopcart.get(userId) != null || shopcart.get(userId).size() == 0) {
+                shopcart.remove(userId);
+            }
+        }
+
+
 
         //将myOrders放入request域中
         request.setAttribute("myOrders", myOrders);
@@ -65,7 +76,7 @@ public class OrdersSetServlet extends HttpServlet {
         System.out.println(myOrders);
 
         //内部跳转到myOrder页面
-        request.getRequestDispatcher("/home/myorder.jsp").forward(request,response);
+        request.getRequestDispatcher("/home/myorder.jsp").forward(request, response);
 
     }
 }
