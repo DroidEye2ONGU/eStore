@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="droideye.estore.mapper.BookMapper">
+
+    <select id="queryBooksByCategoryId" resultType="book" parameterType="integer">
+        SELECT * FROM E_BOOK WHERE CATEGORYID=#{categoryId}
+    </select>
+
+    <select id="queryRecommendedBooksByCategoryId" resultType="book" parameterType="integer">
+        SELECT * FROM E_BOOK
+        WHERE CATEGORYID=#{categoryId} AND STATE=1
+    </select>
+
+    <select id="querySingleBook" resultType="book" parameterType="integer">
+        SELECT * FROM E_BOOK
+        WHERE ID=#{id}
+    </select>
+
+    <select id="queryBookSalesVolume" resultType="bookSalesVolume">
+        SELECT SUM(ONUMBER) AS salesVolume,BOOKID AS bookId
+        FROM E_ORDERLINE
+        GROUP BY BOOKID
+        ORDER BY 1 DESC
+    </select>
+
+    <select id="queryAllRecommendedBooks" resultType="book">
+        SELECT * FROM E_BOOK
+        WHERE STATE=1
+    </select>
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="droideye.estore.mapper.CategoryMapper">
+
+    <select id="queryAllCategories" resultType="category">
+        SELECT * FROM E_CATEGORY
+    </select>
+
+    <select id="querySingleCategoryById" resultType="category">
+        SELECT * FROM E_CATEGORY
+        WHERE ID=#{id}
+    </select>
+</mapper>

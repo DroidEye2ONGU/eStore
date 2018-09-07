@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="droideye.estore.mapper.UserMapper">
+
+    <select id="selectByUsername" resultMap="userMap">
+        SELECT * FROM E_USER WHERE USERNAME=#{username}
+    </select>
+    <resultMap id="userMap" type="user">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+
+        <result column="USERNAME" property="username"/>
+        <result column="PASSWORD" property="password"/>
+        <result column="ZIP" property="zip"/>
+        <result column="PHONE" property="phone"/>
+        <result column="EMAIL" property="email"/>
+        <result column="UDATE" property="uDate" jdbcType="TIMESTAMP"/>
+        <result column="STATE" property="state"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="user" >
+        <selectKey order="BEFORE" keyProperty="id" resultType="_integer">
+            SELECT SEQ_EUSERID.nextval FROM DUAL
+        </selectKey>
+        INSERT INTO E_USER(id,USERNAME, PASSWORD, ZIP, PHONE, EMAIL, UDATE, STATE)
+        VALUES(#{id},#{username},#{password},#{zip},#{phone},#{email},#{uDate},#{state})
+    </insert>
+
+    <update id="modifyUserById" parameterType="user">
+        UPDATE E_USER SET ZIP=#{zip},PHONE=#{phone},EMAIL=#{email}
+        WHERE ID=#{id}
+    </update>
+
+    <update id="changePassword" parameterType="user">
+        UPDATE E_USER SET PASSWORD=#{password}
+        WHERE ID=#{id}
+    </update>
+</mapper>

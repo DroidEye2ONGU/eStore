@@ -1,0 +1,44 @@
+.cartnum {
+    height: 30px;
+}
+.sub, .add {
+    float: left;
+    margin-top: 56px;
+    height: 30px;
+    width: 30px;
+    border: 1px solid #ccc;
+    text-align: center;
+    line-height: 30px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+}
+.mainCenter .mainPro .bb input.num {
+    float: left;
+    height: 28px;
+    width: 56px;
+    color: #000;
+    text-align: center;
+    line-height: 26px;
+    margin-left:  0;
+    margin-top: 56px;
+}
+.clear {
+    clear: both;
+}
+
+.mm {
+    margin-top: 36px;
+}
+.ri {
+    margin-top: 30px;
+}
+.righ {
+    margin-top: 30px;
+}
+a:hover {
+    color: #f60;
+}

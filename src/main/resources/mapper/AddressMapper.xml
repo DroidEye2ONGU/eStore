@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="droideye.estore.mapper.AddressMapper">
+
+    <select id="queryAllAddressOwnedByOneUser" resultType="address" parameterType="_integer">
+        SELECT * FROM E_ADDRESS
+        WHERE USERID=#{userId}
+    </select>
+
+    <delete id="deleteSingleAddressByAddressId" parameterType="_integer">
+        DELETE FROM E_ADDRESS
+        WHERE ID=#{id}
+    </delete>
+
+    <insert id="addSingleAddress" parameterType="address">
+        <selectKey order="BEFORE" keyProperty="id" resultType="_integer">
+            SELECT SEQ_EADDRESSID.nextval FROM DUAL
+        </selectKey>
+        INSERT INTO E_ADDRESS(ID, USERID, NAME, PHONE, INFO)
+        VALUES (#{id},#{userId},#{name},#{phone},#{info})
+    </insert>
+
+    <select id="querySingleAddressByAddressId" resultType="address" parameterType="_integer">
+        SELECT * FROM E_ADDRESS
+        WHERE ID=#{addressId}
+    </select>
+</mapper>

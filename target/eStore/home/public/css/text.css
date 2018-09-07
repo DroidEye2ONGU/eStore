@@ -1,0 +1,27 @@
+
+
+
+
+.c3_b1_left p a {
+	display: inline-block;
+	width: 68px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+a.cla {
+	color: #000;
+}
+
+.rebook {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+
+
+
+
+

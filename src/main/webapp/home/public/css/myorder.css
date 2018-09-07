@@ -1,0 +1,26 @@
+
+
+table {
+	display: table;
+	width: 80%;
+	margin: 20px auto;
+	text-align: center;
+}
+
+table th {
+	height: 30px;
+}
+
+table td {
+	height: 100px;
+}
+
+table tr th a {
+	float: right;
+	margin-right: 20px;
+}
+table tr th a:hover {
+	color: #f60;
+}
+
+

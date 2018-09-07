@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="droideye.estore.mapper.OrderMapper">
+
+    <insert id="addSingleOrder" parameterType="order">
+        <selectKey order="BEFORE" keyProperty="id" resultType="_integer">
+            SELECT SEQ_EORDERID.nextval FROM DUAL
+        </selectKey>
+        INSERT INTO E_ORDER (ID,USERID,ADDRESSID,TOTAL,ODATE,STATE)
+        VALUES (#{id},#{userId},#{addressId},#{total},#{date},#{state})
+    </insert>
+
+    <select id="queryOrdersOwnedByUser" parameterType="integer" resultMap="orderMap">
+        SELECT * FROM E_ORDER
+        WHERE USERID=#{userId}
+    </select>
+    <resultMap id="orderMap" type="order">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+
+        <result column="USERID" property="userId" jdbcType="INTEGER"/>
+        <result column="ADDRESSID" property="addressId" jdbcType="INTEGER"/>
+        <result column="TOTAL" property="total" jdbcType="DOUBLE"/>
+        <result column="ODATE" property="date" jdbcType="TIMESTAMP"/>
+        <result column="STATE" property="state" jdbcType="INTEGER"/>
+    </resultMap>
+
+</mapper>
